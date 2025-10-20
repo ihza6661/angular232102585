@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angularMinggu4": {
+    "angular232102585": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -56,10 +56,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angularMinggu4:build:production"
+              "buildTarget": "angular232102585:build:production"
             },
             "development": {
-              "buildTarget": "angularMinggu4:build:development"
+              "buildTarget": "angular232102585:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -88,5 +88,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
