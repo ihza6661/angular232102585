@@ -12,8 +12,6 @@ export class Login {
     this.renderer.addClass(document.body, "login-page");
     this.renderer.removeClass(document.body, "sidebar-mini");
     this.renderer.removeClass(document.body, "layout-fixed");
-
     this.renderer.setAttribute(document.body, "style", "min-height: 464px;");
-
   }
 }
