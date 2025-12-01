@@ -18,7 +18,7 @@
         <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image" />
       </div>
       <div class="info">
-        <a href="#" class="d-block">Alexander Pierce</a>
+        <a href="#" class="d-block">{{ username }} </a>
       </div>
     </div>
 
@@ -50,7 +50,7 @@
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
         <li
-          class="nav-item has-treeview 
+          class="nav-item has-treeview
     {{
             (moduleName == 'dashboard' ||
               moduleName == 'dashboard2' ||
@@ -60,7 +60,7 @@
         >
           <a
             href="#"
-            class="nav-link 
+            class="nav-link
    {{
               (moduleName == 'dashboard' ||
                 moduleName == 'dashboard2' ||
@@ -118,6 +118,13 @@
           >
             <i class="fas fa-graduation-cap"></i>
             <p>Mahasiswa</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="/mahasiswa" class="nav-link">
+            <i class="fas fa-graduation-cap"></i>
+            <p>Mahasiswa - Non Router</p>
           </a>
         </li>
 
@@ -710,6 +717,10 @@
             <p>Informational</p>
           </a>
         </li>
+        <a [routerLink]="['/logout']" routerLinkActive="router-link-active" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Logout</p>
+        </a>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

@@ -1,13 +1,16 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AfterViewInit, Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 declare const $: any;
 
 @Component({
   selector: 'app-mahasiswa',
-  imports: [],
+  imports: [CommonModule, FormsModule, HttpClientModule],
   templateUrl: './mahasiswa.html',
   styleUrl: './mahasiswa.css',
+  standalone: true,
 })
 export class Mahasiswa implements AfterViewInit {
   data: any;
@@ -16,31 +19,30 @@ export class Mahasiswa implements AfterViewInit {
   constructor(private httpClient: HttpClient) {}
 
   ngAfterViewInit(): void {
-    $('table1').DataTable();
-
     this.table1 = $('#table1').DataTable();
-
     this.bindMahasiswa();
   }
 
   bindMahasiswa(): void {
     this.httpClient
-      .get("https://stmikpontianak.cloud/011100862/tampilMahasiswa.php")
+      .get('https://stmikpontianak.cloud/011100862/tampilMahasiswa.php')
       .subscribe((data: any) => {
         console.table(data);
         this.table1.clear();
 
         (data || []).forEach((element: any) => {
-          var tempatTanggalLahir = (element.TempatLahir || '') + ", " + (element.TanggalLahir || '');
+          var tempatTanggalLahir =
+            (element.TempatLahir || '') + ', ' + (element.TanggalLahir || '');
 
           const jenisKelaminFormatted =
             (element.JenisKelamin || '') +
-            " " +
-            ((element.JenisKelamin == "Perempuan" || element.JenisKelamin == "perempuan")
+            ' ' +
+            (element.JenisKelamin == 'Perempuan' ||
+            element.JenisKelamin == 'perempuan'
               ? "<i class='fas fa-venus text-danger'></i>"
-              : (element.JenisKelamin != "undefined")
+              : element.JenisKelamin != 'undefined'
               ? "<i class='fas fa-mars text-primary'></i>"
-              : "");
+              : '');
 
           var row = [
             element.NIM,
@@ -59,4 +61,10 @@ export class Mahasiswa implements AfterViewInit {
         this.table1.draw(false);
       });
   }
+
+  showTambahModal(): void {
+    $('#tambahModal').modal();
+  }
+
+  postRecord(): void {}
 }
