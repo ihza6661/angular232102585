@@ -41,6 +41,17 @@
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
+
+      <li class="nav-item">
+  <a [routerLink]="['/forex']"
+     class="nav-link {{ (moduleName == 'forex') ? 'active' : '' }}">
+    <i class="fas fa-money-bill-alt"></i>
+    <p>
+      Forex
+    </p>
+  </a>
+</li>
+
       <ul
         class="nav nav-pills nav-sidebar flex-column"
         data-widget="treeview"
