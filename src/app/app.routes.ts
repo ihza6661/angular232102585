@@ -10,6 +10,7 @@ import { Forex } from './forex/forex';
 import { Mahasiswa } from './mahasiswa/mahasiswa';
 import { Logout } from './logout/logout';
 import { otentikasiGuard } from './otentikasi-guard';
+import { Cuaca } from './cuaca/cuaca';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -22,5 +23,6 @@ export const routes: Routes = [
   { path: 'signup', component: Signup },
   { path: 'footer', component: Footer },
   { path: 'mahasiswa', component: Mahasiswa, canActivate: [otentikasiGuard] },
+  { path: 'cuaca', component: Cuaca, canActivate: [otentikasiGuard] },
   { path: 'logout', component: Logout },
 ];
