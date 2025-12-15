@@ -7,6 +7,7 @@ import { Footer } from '../footer/footer';
 
 declare const $: any;
 declare const moment: any;
+declare const toastr: any;
 
 @Component({
   selector: 'app-cuaca',
@@ -28,6 +29,16 @@ export class Cuaca implements AfterViewInit {
     if (typeof $ === 'undefined' || typeof moment === 'undefined') {
       console.warn('Cuaca component requires jQuery DataTables and moment.js.');
       return;
+    }
+
+    // Configure toastr options
+    if (typeof toastr !== 'undefined') {
+      toastr.options = {
+        closeButton: true,
+        progressBar: true,
+        positionClass: 'toast-top-right',
+        timeOut: 3000,
+      };
     }
 
     this.table1 = $('#table1').DataTable({
@@ -92,7 +103,7 @@ export class Cuaca implements AfterViewInit {
 
   getData(city: string): void {
     const encodedCity = encodeURIComponent(city);
-    const url = `http://api.openweathermap.org/data/2.5/forecast?q=${encodedCity}&appid=380a9e80e46a5d7e35e8bcba59b3e7ee`;
+    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${encodedCity}&appid=380a9e80e46a5d7e35e8bcba59b3e7ee`;
 
     this.http.get(url).subscribe(
       (data: any) => {
@@ -124,7 +135,15 @@ export class Cuaca implements AfterViewInit {
           return;
         }
 
-        alert(error?.error?.message || 'Terjadi kesalahan');
+        const errorMessage = error?.error?.message || 'Terjadi kesalahan';
+        
+        // Show error notification if toastr is available
+        if (typeof toastr !== 'undefined') {
+          toastr.error(errorMessage, 'Error');
+        } else {
+          alert(errorMessage);
+        }
+        
         this.table1.clear();
         this.table1.draw(false);
       }
