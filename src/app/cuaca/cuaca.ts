@@ -123,7 +123,9 @@ export class Cuaca implements AfterViewInit {
           const tempMin = this.kelvinToCelcius(main.temp_min);
           const tempMax = this.kelvinToCelcius(main.temp_max);
           const temp = tempMin + '°C - ' + tempMax + '°C';
-          const row = [element.dt_txt, iconUrl, cuacaDeskripsi, temp];
+          const humidity = main.humidity + '%';
+          const windSpeed = element.wind.speed + ' m/s';
+          const row = [element.dt_txt, iconUrl, cuacaDeskripsi, temp, humidity, windSpeed];
 
           this.table1.row.add(row);
         });
